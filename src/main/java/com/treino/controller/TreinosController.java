@@ -40,7 +40,7 @@ public class TreinosController {
  
     }
 
-    @GetMapping("/api/treino/open")
+    @GetMapping("/api/treino/openPhysique")
     public Map<String, Object> treinoDoDiaOPEN() {
         treinoService.oTrainOPEN(); 
         DtoRotina dto = new DtoRotina(treinoService); 
@@ -48,7 +48,7 @@ public class TreinosController {
  
     }
 
-    @GetMapping("/api/treino/natural")
+    @GetMapping("/api/treino/naturalPhysique")
     public Map<String, Object> treinoDoDiaNatural() {
         treinoService.oTrainNatural(); 
         DtoRotina dto = new DtoRotina(treinoService); 

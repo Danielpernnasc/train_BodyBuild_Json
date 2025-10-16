@@ -78,12 +78,12 @@ public class TrainOPEN implements Treino {
     }
 
     public void rotineTrainOPEN() {
-        descricaoDia.put("Segunda", "Dia de Peito/Ombros");
-        descricaoDia.put("Terça", "Costas (Regan Grimes style - variação e densidade)");
-        descricaoDia.put("Quarta", "Quadriceps");
-        descricaoDia.put("Quinta", "Ombros e Tríceps");
-        descricaoDia.put("Sexta", "Costa e Bíceps");
-        descricaoDia.put("Sábado", "Pernas B (Posterior/Glúteos/Panturrilha)");
+        descricaoDia.put("Segunda", "Peito e ombros (ênfase superior)");
+        descricaoDia.put("Terça", "Costas e posteriores de ombro");
+        descricaoDia.put("Quarta", "Pernas completas (quadríceps e posteriores)");
+        descricaoDia.put("Quinta", "Braços (bíceps + tríceps)");
+        descricaoDia.put("Sexta", "Peito e costas (treino combinado — densidade)");
+        descricaoDia.put("Sábado", "(ênfase glúteo e posterior)");
         descricaoDia.put("Domingo", "Descanso");
     }
     
