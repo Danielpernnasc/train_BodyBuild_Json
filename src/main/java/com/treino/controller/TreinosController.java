@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.treino.DTO.DtoRotina;
 import com.treino.service.TreinoService;
 
+
+
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class TreinosController {

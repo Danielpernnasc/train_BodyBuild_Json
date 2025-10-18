@@ -31,6 +31,7 @@ public class DtoRotina implements Treino {
 
         // monta o JSON
             Map<String, Object> resposta = new LinkedHashMap<>();
+            resposta.put("tipoTreino", Treino.descricaoTreino.get("Tipo de Treino"));
             resposta.put("dia", dia);
             resposta.put("descricao", descricao);
             resposta.put("exercicios", treinoDoDiaList != null ? treinoDoDiaList : Collections.emptyList());

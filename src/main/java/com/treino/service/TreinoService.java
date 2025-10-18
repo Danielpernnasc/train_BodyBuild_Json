@@ -25,18 +25,20 @@ public class TreinoService implements Treino {
 
     private final TrainClassicPhysique trainClassicPhysique = new TrainClassicPhysique();
 
-    private final TrainOPEN trainOPEN = new TrainOPEN();
+    private final TrainOPEN trainOPENPhysique = new TrainOPEN();
 
-    private final TrainNatural trainNatural = new TrainNatural();
+    private final TrainNatural trainNaturalPhysique = new TrainNatural();
 
 
     public final void oTreinoMP(){
         Map<String, List<Exercicios>> treinoMap = trainMensPhysique.getTrainMensPhysique();
         if (treinoMap != null) {
             treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
-        }
         System.out.println("Treinos carregados: " + trainMensPhysique.getTrainMensPhysique());
-        
+        }
+        trainingDescriptionFor("MensPhysique");
+
+   
     }
 
     public final void oTrainCP(){
@@ -45,22 +47,25 @@ public class TreinoService implements Treino {
             treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
         }
         System.out.println("Treinos carregados: " + trainClassicPhysique.getTrainClassicPhysique());
+        trainingDescriptionFor("ClassicPhysique");
     }
 
     public final void oTrainOPEN(){
-        Map<String, List<Exercicios>> treinoMap = trainOPEN.getTrainOPEN();
+        Map<String, List<Exercicios>> treinoMap = trainOPENPhysique.getTrainOPEN();
         if(treinoMap != null){
             treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
         }
-        System.out.println("Treinos carregados: " + trainOPEN.getTrainOPEN());
+        System.out.println("Treinos carregados: " + trainOPENPhysique.getTrainOPEN());
+        trainingDescriptionFor("OpenPhysique");
     }
 
     public final void oTrainNatural(){
-        Map<String, List<Exercicios>> treinoMap = trainNatural.getTrainNatural();
+        Map<String, List<Exercicios>> treinoMap = trainNaturalPhysique.getTrainNatural();
         if(treinoMap != null){
             treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
         }
-        System.out.println("Treinos carregados: " + trainNatural.getTrainNatural());
+        System.out.println("Treinos carregados: " + trainNaturalPhysique.getTrainNatural());
+        trainingDescriptionFor("NaturalPhysique");
     }
 
  
@@ -84,7 +89,35 @@ public class TreinoService implements Treino {
         };
     }
 
+    public String trainingDescriptionFor(String trainingType){
+        return switch (trainingType) {
+            case "MensPhysique" -> {
+                trainMensPhysique.itsTrain();
+                descricaoTreino.put("Tipo de Treino", "Mens Physique");
+                yield "Mens Physique";
+            }
+            case "ClassicPhysique" -> {
+                trainClassicPhysique.itsTrain();
+                descricaoTreino.put("Tipo de Treino", "Classic Physique");
+                yield "Classic Physique";
+            }
+            case "OpenPhysique" -> {
+                trainOPENPhysique.itsTrain();
+                descricaoTreino.put("Tipo de Treino", "Open Physique");
+                yield "Open Physique";
+            }
+            case "NaturalPhysique" -> {
+                trainNaturalPhysique.itsTrain();
+                descricaoTreino.put("Tipo de Treino", "Natural Physique");
+                yield "Natural Physique";
+            }
+            default -> throw new IllegalStateException("Unexpected training type: " + trainingType);
+        };
+        }
+    
+    }
+
 
 
     
-}
+
