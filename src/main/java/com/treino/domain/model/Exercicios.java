@@ -1,7 +1,6 @@
-package com.treino.model;
+package com.treino.domain.model;
 
 public class Exercicios {
-
     private String nome;
     private int series;
     private String repeticoes;

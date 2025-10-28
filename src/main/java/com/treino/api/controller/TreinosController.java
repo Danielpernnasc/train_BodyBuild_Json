@@ -1,4 +1,4 @@
-package com.treino.controller;
+package com.treino.api.controller;
 
 
 import java.util.Map;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.treino.DTO.DtoRotina;
-import com.treino.service.TreinoService;
+import com.treino.application.service.TreinoService;
 
 
 

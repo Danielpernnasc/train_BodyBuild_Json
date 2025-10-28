@@ -1,4 +1,4 @@
-package com.treino.service;
+package com.treino.application.service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -8,12 +8,12 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.treino.model.Exercicios;
-import com.treino.model.TrainClassicPhysique;
-import com.treino.model.TrainMensPhysique;
-import com.treino.model.TrainNatural;
-import com.treino.model.TrainOPEN;
-import com.treino.model.Treino;
+import com.treino.application.plan.TrainClassicPhysique;
+import com.treino.application.plan.TrainMensPhysique;
+import com.treino.application.plan.TrainNatural;
+import com.treino.application.plan.TrainOPEN;
+import com.treino.application.plan.Treino;
+import com.treino.domain.model.Exercicios;
 
 
 

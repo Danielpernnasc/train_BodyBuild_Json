@@ -9,10 +9,12 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.treino.model.Exercicios;
-import com.treino.model.TrainMensPhysique;
-import com.treino.model.Treino;
-import com.treino.service.TreinoService;
+import com.treino.application.plan.TrainMensPhysique;
+import com.treino.application.plan.Treino;
+import com.treino.application.service.TreinoService;
+import com.treino.domain.model.Exercicios;
+
+
 
 @Component
 public class DtoRotina implements Treino {
@@ -26,7 +28,10 @@ public class DtoRotina implements Treino {
         DayOfWeek diaSemana = LocalDate.now().getDayOfWeek();
         String dia = treinoService.converterDia(diaSemana);
         
-        List<Exercicios> treinoDoDiaList = treinoService.getTreinoDoDia();
+        List<Exercicios> treinoDoDiaList = treinoService.getTreinoDoDia().stream()
+            .filter(obj -> obj instanceof Exercicios)
+            .map(obj -> (Exercicios) obj)
+            .toList();
         String descricao = TrainMensPhysique.descricaoDia.getOrDefault(dia, "Dia de descanso ou atividade leve");
 
         // monta o JSON

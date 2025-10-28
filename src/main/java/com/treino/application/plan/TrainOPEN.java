@@ -1,8 +1,10 @@
-package com.treino.model;
+package com.treino.application.plan;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import com.treino.domain.model.Exercicios;
 
 public class TrainOPEN implements Treino {
 
