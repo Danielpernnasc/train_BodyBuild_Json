@@ -2,7 +2,7 @@ package com.treino.DTO;
 
 import java.util.List;
 
-import com.treino.domain.Treino;
+import com.treino.domain.model.Treino;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

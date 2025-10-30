@@ -1,7 +1,5 @@
 package com.treino.domain.model;
 
-import com.treino.domain.DiaTreino;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,17 +11,18 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "EXERCICIO")
-public class Exercicios {
+public class Exercicio {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "DIA_TREINO_ID")
+    @JoinColumn(name = "DIA_TREINO_ID") // casa com a coluna existente
     private DiaTreino diaTreino;
 
-    @Column(name = "treino", nullable = false, length = 120)
+    @Column(name = "TREINO", nullable = false, length = 120)
     private String treino;
 
     @Column(name = "SERIES", nullable = false)

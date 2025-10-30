@@ -2,6 +2,8 @@ package com.treino.DTO;
 
 import java.util.List;
 
+import com.treino.domain.model.DiaTreino;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,7 +13,8 @@ public class DiaTreinoDTO {
     @NotBlank String nomeDia;
     @NotNull @Size(min = 1) List<ExercicioDTO> exercicios;
     private List<DiaTreinoDTO> dias;
-
+    private String diaSemana;
+    private DiaTreino grupomuscular;
 
 
 
@@ -44,5 +47,28 @@ public class DiaTreinoDTO {
 
     }
 
+
+    public String getDiaSemana() {
+
+        return diaSemana;
+
+    }
+
+
+    public void setDiaSemana(String diaSemana) {
+
+        this.diaSemana = diaSemana;
+    }
+
+
+
+
+    public String getGrupoMuscular() {
+        return grupomuscular.getGrupoMuscular();
+    }
+
+    public String getEnfase() {
+        return grupomuscular.getEnfase();
+    }
 
 }

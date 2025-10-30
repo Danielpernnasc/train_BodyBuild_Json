@@ -1,9 +1,7 @@
-package com.treino.domain;
+package com.treino.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.treino.domain.model.Exercicios;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,11 +17,12 @@ import jakarta.persistence.Table;
 public class Treino {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // funciona com IDENTITY/SEQUENCE do Oracle
+    @GeneratedValue(strategy = GenerationType.AUTO) // ok no Oracle XE 21c
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NOME", nullable = false, length = 120)
+    // coluna no banco = TREINO
+    @Column(name = "TREINO", nullable = false, length = 120)
     private String nomeTreino;
 
     @OneToMany(mappedBy = "treino", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -34,7 +33,7 @@ public class Treino {
         diasTreino.add(d);
     }
 
-    public void addExercicio(DiaTreino d, Exercicios e) {
+    public void addExercicio(DiaTreino d, Exercicio e) {
         d.setTreino(this);
         e.setDiaTreino(d);
         d.getExercicios().add(e);
@@ -43,7 +42,6 @@ public class Treino {
         }
     }
 
-    // getters/setters
     public Long getId() { return id; }
     public String getNomeTreino() { return nomeTreino; }
     public void setNomeTreino(String nome) { this.nomeTreino = nome; }

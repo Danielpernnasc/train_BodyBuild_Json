@@ -1,4 +1,4 @@
-package com.treino.domain;
+package com.treino.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class DiaTreino {
     private String enfase; // ex: “Força”, “Volume”, “Resistência”
 
     @OneToMany(mappedBy = "diaTreino", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<com.treino.domain.model.Exercicios> exercicios = new ArrayList<>();
+    private List<com.treino.domain.model.Exercicio> exercicios = new ArrayList<>();
 
     // getters/setters
     public Long getId() { return id; }
@@ -53,10 +53,10 @@ public class DiaTreino {
     public String getEnfase() { return enfase; }
     public void setEnfase(String enfase) { this.enfase = enfase; }
 
-    public List<com.treino.domain.model.Exercicios> getExercicios() { return exercicios; }
-    public void setExercicios(List<com.treino.domain.model.Exercicios> exercicios) { this.exercicios = exercicios; }
+    public List<com.treino.domain.model.Exercicio> getExercicios() { return exercicios; }
+    public void setExercicios(List<com.treino.domain.model.Exercicio> exercicios) { this.exercicios = exercicios; }
 
-    public void addExercicio(com.treino.domain.model.Exercicios e) {
+    public void addExercicio(com.treino.domain.model.Exercicio e) {
         e.setDiaTreino(this);
         exercicios.add(e);
     }
