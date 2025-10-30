@@ -1,11 +1,12 @@
 package com.treino;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ShapeApplicationTest {
+class ShapeApplicationTest {
+
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertTrue(true);
     }
 }

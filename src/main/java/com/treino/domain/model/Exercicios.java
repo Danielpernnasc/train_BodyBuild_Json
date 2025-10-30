@@ -1,31 +1,48 @@
 package com.treino.domain.model;
 
+import com.treino.domain.DiaTreino;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "EXERCICIO")
 public class Exercicios {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Long id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "DIA_TREINO_ID")
+    private DiaTreino diaTreino;
+
+    @Column(name = "NOME", nullable = false, length = 120)
     private String nome;
-    private int series;
+
+    @Column(name = "SERIES", nullable = false)
+    private Integer series;
+
+    @Column(name = "REPETICOES", nullable = false, length = 20)
     private String repeticoes;
+
+    @Column(name = "DESCANSO", length = 20)
     private String descanso;
-    private String observacao;
 
-    public Exercicios(String nome, int series, String repeticoes, String descanso, String observacao) {
-        this.nome = nome;
-        this.series = series;
-        this.repeticoes = repeticoes;
-        this.descanso = descanso;
-        this.observacao = observacao;
-    }
+    @Column(name = "OBSERVACOES", length = 255)
+    private String observacoes;
 
+    // getters/setters
+    public Long getId() { return id; }
+    public DiaTreino getDiaTreino() { return diaTreino; }
+    public void setDiaTreino(DiaTreino diaTreino) { this.diaTreino = diaTreino; }
     public String getNome() { return nome; }
-    public int getSeries() { return series; }
-    public String getRepeticoes() { return repeticoes; }
-    public String getDescanso() { return descanso; }
-    public String getObservacao() {
-        return (observacao == null || observacao.isEmpty()) ? "Nenhuma" : observacao;
-    }
-
     public void setNome(String nome) { this.nome = nome; }
-    public void setSeries(int series) { this.series = series; }
+    public Integer getSeries() { return series; }
+    public void setSeries(Integer series) { this.series = series; }
+    public String getRepeticoes() { return repeticoes; }
     public void setRepeticoes(String repeticoes) { this.repeticoes = repeticoes; }
+    public String getDescanso() { return descanso; }
     public void setDescanso(String descanso) { this.descanso = descanso; }
-    public void setObservacao(String observacao) { this.observacao = observacao; }
+    public String getObservacoes() { return observacoes; }
+    public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
 }

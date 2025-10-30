@@ -1,120 +1,102 @@
 package com.treino.application.service;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
-import com.treino.application.plan.TrainClassicPhysique;
-import com.treino.application.plan.TrainMensPhysique;
-import com.treino.application.plan.TrainNatural;
-import com.treino.application.plan.TrainOPEN;
-import com.treino.application.plan.Treino;
+import com.treino.DTO.DiaTreinoDTO;
+import com.treino.DTO.TreinoCreateDTO;
+import com.treino.domain.DiaTreino;
+import com.treino.domain.Treino;
 import com.treino.domain.model.Exercicios;
+import com.treino.domain.repository.TreinoRepository;
 
+import jakarta.transaction.Transactional;
 
 
 @Service
-public class TreinoService implements Treino {  
+public class TreinoService  {  
+        private final TreinoRepository repo;
 
-
-    private final TrainMensPhysique trainMensPhysique = new TrainMensPhysique();
-
-    private final TrainClassicPhysique trainClassicPhysique = new TrainClassicPhysique();
-
-    private final TrainOPEN trainOPENPhysique = new TrainOPEN();
-
-    private final TrainNatural trainNaturalPhysique = new TrainNatural();
-
-
-    public final void oTreinoMP(){
-        Map<String, List<Exercicios>> treinoMap = trainMensPhysique.getTrainMensPhysique();
-        if (treinoMap != null) {
-            treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
-        System.out.println("Treinos carregados: " + trainMensPhysique.getTrainMensPhysique());
+        public TreinoService(TreinoRepository repo){
+            this.repo = repo;
         }
-        trainingDescriptionFor("MensPhysique");
 
-   
-    }
 
-    public final void oTrainCP(){
-        Map<String, List<Exercicios>> treinoMap = trainClassicPhysique.getTrainClassicPhysique();
-        if(treinoMap != null){
-            treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
+        @Transactional
+        public Treino criarTreino(TreinoCreateDTO dto){
+            Treino treino = new Treino();
+            
+            treino.setNome(dto.getNomeTreino());
+            return repo.save(treino);
         }
-        System.out.println("Treinos carregados: " + trainClassicPhysique.getTrainClassicPhysique());
-        trainingDescriptionFor("ClassicPhysique");
-    }
 
-    public final void oTrainOPEN(){
-        Map<String, List<Exercicios>> treinoMap = trainOPENPhysique.getTrainOPEN();
-        if(treinoMap != null){
-            treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
+        @Transactional
+        public Treino diaTreino(DiaTreinoDTO diaDTO){
+            Treino treino = new Treino();
+
+            diaDTO.dias().forEach(d -> {
+                DiaTreino dia = new DiaTreino();
+                dia.setDiaSemana(d.getNomeDia());
+    
+                d.getExercicios().forEach(ex -> {
+                    Exercicios e = new Exercicios();
+                    e.setNome(ex.getNomeTreino());
+                    e.setSeries(ex.getSeries());
+                    e.setRepeticoes(ex.getRepeticoes());
+                    e.setDescanso(ex.getDescanso());
+                    e.setObservacoes(ex.getObservacoes());
+                    treino.addExercicio(dia, e);
+                });
+    
+                treino.addDia(dia);
+            });
+            return repo.save(treino);
         }
-        System.out.println("Treinos carregados: " + trainOPENPhysique.getTrainOPEN());
-        trainingDescriptionFor("OpenPhysique");
-    }
 
-    public final void oTrainNatural(){
-        Map<String, List<Exercicios>> treinoMap = trainNaturalPhysique.getTrainNatural();
-        if(treinoMap != null){
-            treinoMap.forEach((day, exercises) -> treinos.put(day, exercises));
-        }
-        System.out.println("Treinos carregados: " + trainNaturalPhysique.getTrainNatural());
-        trainingDescriptionFor("NaturalPhysique");
-    }
-
- 
-
-    public List<Exercicios> getTreinoDoDia() {
-        DayOfWeek diaSemana = LocalDate.now().getDayOfWeek();
-        String dia = converterDia(diaSemana); // usa o método que converte para "Segunda", "Terça"...
-        List<Exercicios> treinoDoDia = treinos.get(dia);
-        return treinoDoDia != null ? treinoDoDia : Collections.emptyList();
-    }
-
-    public String converterDia(DayOfWeek diaSemana) {
-        return switch (diaSemana) {
-            case MONDAY -> "Segunda";
-            case TUESDAY -> "Terça";
-            case WEDNESDAY -> "Quarta";
-            case THURSDAY -> "Quinta";
-            case FRIDAY -> "Sexta";
-            case SATURDAY -> "Sábado";
-            case SUNDAY -> "Domingo";
-        };
-    }
-
-    public String trainingDescriptionFor(String trainingType){
-        return switch (trainingType) {
-            case "MensPhysique" -> {
-                trainMensPhysique.itsTrain();
-                descricaoTreino.put("Tipo de Treino", "Mens Physique");
-                yield "Mens Physique";
-            }
-            case "ClassicPhysique" -> {
-                trainClassicPhysique.itsTrain();
-                descricaoTreino.put("Tipo de Treino", "Classic Physique");
-                yield "Classic Physique";
-            }
-            case "OpenPhysique" -> {
-                trainOPENPhysique.itsTrain();
-                descricaoTreino.put("Tipo de Treino", "Open Physique");
-                yield "Open Physique";
-            }
-            case "NaturalPhysique" -> {
-                trainNaturalPhysique.itsTrain();
-                descricaoTreino.put("Tipo de Treino", "Natural Physique");
-                yield "Natural Physique";
-            }
-            default -> throw new IllegalStateException("Unexpected training type: " + trainingType);
-        };
+        public java.util.List<Treino> listar() {
+            return repo.findAll();
         }
     
+        public java.util.Optional<Treino> buscar(Long id) {
+            return repo.findById(id);
+        }
+
+
+  
+        public Treino criarTreinoComDiasEExercicios(TreinoCreateDTO dto) {
+            Treino treino = new Treino();
+            treino.setNome(dto.getNomeTreino());
+        
+            if (dto.dias() != null) {
+                dto.dias().forEach(d -> {
+                    DiaTreino dia = new DiaTreino();
+                    dia.setDiaSemana(d.getDiaSemana());         // ✅ casa com DIA_SEMANA
+                    dia.setGrupoMuscular(d.getGrupoMuscular()); // ✅ casa com GRUPO_MUSCULAR
+                    dia.setEnfase(d.getEnfase());               // ✅ casa com ENFASE
+        
+                    if (d.getExercicios() != null) {
+                        d.getExercicios().forEach(ex -> {
+                            Exercicios e = new Exercicios();
+                            e.setNome(ex.getNome());                    // ajuste para seu DTO
+                            e.setSeries(ex.getSeries());
+                            e.setRepeticoes(ex.getRepeticoes());
+                            e.setDescanso(ex.getDescanso());
+                            e.setObservacoes(ex.getObservacoes());
+                            dia.addExercicio(e);
+                        });
+                    }
+        
+                    treino.addDia(dia);
+                });
+            }
+        
+            return repo.save(treino);
+        }
+
+
+
+
+
+   
     }
 
 
