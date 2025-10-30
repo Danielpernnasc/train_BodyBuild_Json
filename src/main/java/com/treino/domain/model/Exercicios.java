@@ -2,7 +2,14 @@ package com.treino.domain.model;
 
 import com.treino.domain.DiaTreino;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "EXERCICIO")
@@ -16,8 +23,8 @@ public class Exercicios {
     @JoinColumn(name = "DIA_TREINO_ID")
     private DiaTreino diaTreino;
 
-    @Column(name = "NOME", nullable = false, length = 120)
-    private String nome;
+    @Column(name = "treino", nullable = false, length = 120)
+    private String treino;
 
     @Column(name = "SERIES", nullable = false)
     private Integer series;
@@ -35,8 +42,8 @@ public class Exercicios {
     public Long getId() { return id; }
     public DiaTreino getDiaTreino() { return diaTreino; }
     public void setDiaTreino(DiaTreino diaTreino) { this.diaTreino = diaTreino; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getTreino() { return treino; }
+    public void setTreino(String treino) { this.treino = treino; }
     public Integer getSeries() { return series; }
     public void setSeries(Integer series) { this.series = series; }
     public String getRepeticoes() { return repeticoes; }

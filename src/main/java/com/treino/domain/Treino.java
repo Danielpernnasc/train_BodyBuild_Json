@@ -24,29 +24,29 @@ public class Treino {
     private Long id;
 
     @Column(name = "NOME", nullable = false, length = 120)
-    private String nome;
+    private String nomeTreino;
 
     @OneToMany(mappedBy = "treino", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DiaTreino> dias = new ArrayList<>();
+    private List<DiaTreino> diasTreino = new ArrayList<>();
 
     public void addDia(DiaTreino d) {
         d.setTreino(this);
-        dias.add(d);
+        diasTreino.add(d);
     }
 
     public void addExercicio(DiaTreino d, Exercicios e) {
         d.setTreino(this);
         e.setDiaTreino(d);
         d.getExercicios().add(e);
-        if (!dias.contains(d)) {
-            dias.add(d);
+        if (!diasTreino.contains(d)) {
+            diasTreino.add(d);
         }
     }
 
     // getters/setters
     public Long getId() { return id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public List<DiaTreino> getDias() { return dias; }
-    public void setDias(List<DiaTreino> dias) { this.dias = dias; }
+    public String getNomeTreino() { return nomeTreino; }
+    public void setNomeTreino(String nome) { this.nomeTreino = nome; }
+    public List<DiaTreino> getDias() { return diasTreino; }
+    public void setDias(List<DiaTreino> dias) { this.diasTreino = dias; }
 }

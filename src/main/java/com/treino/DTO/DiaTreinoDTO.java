@@ -12,6 +12,9 @@ public class DiaTreinoDTO {
     @NotNull @Size(min = 1) List<ExercicioDTO> exercicios;
     private List<DiaTreinoDTO> dias;
 
+
+
+
     public List<ExercicioDTO> getExercicios() {
         return exercicios;
     }
@@ -40,4 +43,6 @@ public class DiaTreinoDTO {
         this.dias = dias;
 
     }
+
+
 }

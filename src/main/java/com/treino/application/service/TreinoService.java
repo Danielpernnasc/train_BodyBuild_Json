@@ -25,7 +25,7 @@ public class TreinoService  {
         public Treino criarTreino(TreinoCreateDTO dto){
             Treino treino = new Treino();
             
-            treino.setNome(dto.getNomeTreino());
+            treino.setNomeTreino(dto.getNomeTreino());
             return repo.save(treino);
         }
 
@@ -39,7 +39,7 @@ public class TreinoService  {
     
                 d.getExercicios().forEach(ex -> {
                     Exercicios e = new Exercicios();
-                    e.setNome(ex.getNomeTreino());
+                    e.setTreino(ex.getNomeTreino());
                     e.setSeries(ex.getSeries());
                     e.setRepeticoes(ex.getRepeticoes());
                     e.setDescanso(ex.getDescanso());
@@ -64,19 +64,18 @@ public class TreinoService  {
   
         public Treino criarTreinoComDiasEExercicios(TreinoCreateDTO dto) {
             Treino treino = new Treino();
-            treino.setNome(dto.getNomeTreino());
+            treino.setNomeTreino(dto.getNomeTreino());
         
             if (dto.dias() != null) {
                 dto.dias().forEach(d -> {
                     DiaTreino dia = new DiaTreino();
-                    dia.setDiaSemana(d.getDiaSemana());         // ✅ casa com DIA_SEMANA
-                    dia.setGrupoMuscular(d.getGrupoMuscular()); // ✅ casa com GRUPO_MUSCULAR
-                    dia.setEnfase(d.getEnfase());               // ✅ casa com ENFASE
+                    dia.setDiaSemana(d.getNomeDia());         // ✅ casa com DIA_SEMANA
+
         
                     if (d.getExercicios() != null) {
                         d.getExercicios().forEach(ex -> {
                             Exercicios e = new Exercicios();
-                            e.setNome(ex.getNome());                    // ajuste para seu DTO
+                            e.setTreino(ex.getNomeTreino());                    // ajuste para seu DTO
                             e.setSeries(ex.getSeries());
                             e.setRepeticoes(ex.getRepeticoes());
                             e.setDescanso(ex.getDescanso());
