@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.treino.application.service.ExercicioService;
 import com.treino.domain.model.Exercicio;
+
 import com.treino.domain.repository.ExercicioRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +32,7 @@ public class ExercicioController {
 
     private final ExercicioService service;
     private final ExercicioRepository repo;
+
 
     public ExercicioController(ExercicioService service, ExercicioRepository repo) {
         this.service = service;
@@ -50,7 +52,7 @@ public class ExercicioController {
     )
     @GetMapping
     public ResponseEntity<List<Exercicio>> listarTodos() {
-        var lista = repo.findAll().stream()
+        List<Exercicio> exercicios = repo.findAll().stream()
             .map(e -> new Exercicio(
                 e.getId(),
                 e.getDiaTreino(),
@@ -60,13 +62,8 @@ public class ExercicioController {
                 e.getDescanso(),
                 e.getObservacoes()
             ))
-            .toList(); // ✅ compatível com Java 17
-
-        if (lista.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(lista);
+            .toList();
+        return ResponseEntity.ok(exercicios);
     }
 
     // ===================== BUSCAR POR ID =====================
@@ -94,7 +91,7 @@ public class ExercicioController {
     @PutMapping("/{id}")
     public ResponseEntity<Exercicio> atualizarExercicio(@PathVariable Long id, Exercicio updatedExercicio) {
         try {
-            Exercicio exercicio = service.atualizar(id, updatedExercicio);
+            Exercicio exercicio = service.Atualizar(id, updatedExercicio);
             return ResponseEntity.ok(exercicio);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

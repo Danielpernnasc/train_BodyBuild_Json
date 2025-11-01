@@ -22,6 +22,7 @@ public class ExercicioService {
         return exercicioRepository.save(exercicio);
     }
 
+
     public List<Exercicio> getAllExercicios() {
         return exercicioRepository.findAll();
     }
@@ -30,8 +31,7 @@ public class ExercicioService {
         return exercicioRepository.findById(id);
     }
 
-    @Transactional
-    public Exercicio atualizar(long id, Exercicio updatedExercicio) {
+    public Exercicio Atualizar(long id, Exercicio updatedExercicio) {
         Exercicio exercicio = exercicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercicio " + id + " não encontrado"));
 
@@ -43,6 +43,8 @@ public class ExercicioService {
         // Removed the call to addExercicio as it is undefined in the Exercicio class
         return exercicioRepository.save(exercicio);
     }
+    
+   
 
     @Transactional
     public void deleter(Long id) {
