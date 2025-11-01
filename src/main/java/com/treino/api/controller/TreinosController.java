@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.treino.DTO.TreinoCreateDTO;
 import com.treino.application.service.TreinoService;
 import com.treino.domain.model.Treino;
 
@@ -28,7 +27,7 @@ public class TreinosController {
   }
 
   @PostMapping
-  public ResponseEntity<Treino> criar(@RequestBody TreinoCreateDTO dto) {
+  public ResponseEntity<Treino> criar(@RequestBody Treino dto) {
     return ResponseEntity.ok(service.criarTreinoComDiasEExercicios(dto));
   }
 
@@ -44,7 +43,7 @@ public class TreinosController {
 
   // TreinoController.java
   @PutMapping("/{id}")
-  public ResponseEntity<Treino> atualizar(@PathVariable Long id, @RequestBody TreinoCreateDTO dto) {
+  public ResponseEntity<Treino> atualizar(@PathVariable Long id, @RequestBody Treino dto) {
       try {
           Treino atualizado = service.atualizar(id, dto);
           return ResponseEntity.ok(atualizado);

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 
-import com.treino.DTO.TreinoCreateDTO;
+
 import com.treino.domain.model.DiaTreino;
 import com.treino.domain.model.Exercicio;
 import com.treino.domain.model.Treino;
@@ -27,12 +27,12 @@ public class TreinoService {
      * Cria um treino completo (com dias e exercícios).
      */
     @Transactional
-    public Treino criarTreinoComDiasEExercicios(TreinoCreateDTO dto) {
+    public Treino criarTreinoComDiasEExercicios(Treino treinando) {
         Treino treino = new Treino();
-        treino.setNomeTreino(dto.getNomeTreino());
+        treino.setNomeTreino(treinando.getNomeTreino());
 
-        if (dto.dias() != null) {
-            dto.dias().forEach(diaDTO -> {
+        if (treinando.getDiasTreino() != null) {
+            treinando.getDiasTreino().forEach(diaDTO -> {
                 DiaTreino dia = new DiaTreino();
                 dia.setDiaSemana(diaDTO.getDiaSemana());
                 dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
@@ -41,13 +41,13 @@ public class TreinoService {
 
                 if (diaDTO.getExercicios() != null) {
                     diaDTO.getExercicios().forEach(exDTO -> {
-                        Exercicio ex = new Exercicio();
-                        ex.setSeries(exDTO.getSeries());
-                        ex.setRepeticoes(exDTO.getRepeticoes());
-                        ex.setDescanso(exDTO.getDescanso());
-                        ex.setObservacoes(exDTO.getObservacoes());
-                        ex.setDiaTreino(dia); // <- importante: define a FK
-                        dia.addExercicio(ex);
+                        Exercicio exercicio = new Exercicio();
+                        exercicio.setSeries(exDTO.getSeries());
+                        exercicio.setRepeticoes(exDTO.getRepeticoes());
+                        exercicio.setDescanso(exDTO.getDescanso());
+                        exercicio.setObservacoes(exDTO.getObservacoes());
+                        exercicio.setDiaTreino(dia); // <- importante: define a FK
+                        dia.addExercicio(exercicio);
                     });
                 }
 
@@ -75,7 +75,7 @@ public class TreinoService {
 
     // TreinoService.java
     @Transactional
-    public Treino atualizar(Long id, TreinoCreateDTO dto) {
+    public Treino atualizar(Long id, Treino dto) {
         Treino existente = treinoRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Treino " + id + " não encontrado"));
 
@@ -86,8 +86,8 @@ public class TreinoService {
     existente.getDiasTreino().clear();
 
     // recria a estrutura a partir do DTO
-    if (dto.dias() != null) {
-        dto.dias().forEach(diaDTO -> {
+    if (dto.getDiasTreino() != null) {
+        dto.getDiasTreino().forEach(diaDTO -> {
             DiaTreino dia = new DiaTreino();
             dia.setDiaSemana(diaDTO.getDiaSemana());
             dia.setGrupoMuscular(diaDTO.getGrupoMuscular());

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.treino.DTO.ExercicioResponse;
 import com.treino.application.service.ExercicioService;
 import com.treino.domain.model.Exercicio;
 import com.treino.domain.repository.ExercicioRepository;
@@ -50,11 +49,11 @@ public class ExercicioController {
         description = "Retorna todos os exercícios de forma plana, sem loops de treino/dia."
     )
     @GetMapping
-    public ResponseEntity<List<ExercicioResponse>> listarTodos() {
+    public ResponseEntity<List<Exercicio>> listarTodos() {
         var lista = repo.findAll().stream()
-            .map(e -> new ExercicioResponse(
+            .map(e -> new Exercicio(
                 e.getId(),
-                e.getDiaTreino() != null ? e.getDiaTreino().getId() : null,
+                e.getDiaTreino(),
                 e.getTreino(),
                 e.getSeries(),
                 e.getRepeticoes(),
@@ -76,11 +75,11 @@ public class ExercicioController {
         description = "Retorna um exercício específico em formato plano (sem relacionamentos aninhados)."
     )
     @GetMapping("/{id}")
-    public ResponseEntity<ExercicioResponse> buscarPorId(@PathVariable Long id) {
-        return repo.findById(id)
-            .map(e -> new ExercicioResponse(
+    public ResponseEntity<Exercicio> buscarPorId(@PathVariable Long id) {
+        return service.getExercicioById(id)
+            .map(e -> new Exercicio(
                 e.getId(),
-                e.getDiaTreino() != null ? e.getDiaTreino().getId() : null,
+                e.getDiaTreino(),
                 e.getTreino(),
                 e.getSeries(),
                 e.getRepeticoes(),
@@ -88,7 +87,8 @@ public class ExercicioController {
                 e.getObservacoes()
             ))
             .map(ResponseEntity::ok)
-            .orElseGet(() -> ResponseEntity.notFound().build());
+            .orElse(ResponseEntity.notFound().build());
+           
     }
 
     @PutMapping("/{id}")

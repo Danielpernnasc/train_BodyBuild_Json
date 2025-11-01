@@ -23,6 +23,7 @@ public class Exercicio {
     @JoinColumn(name = "DIA_TREINO_ID") // chave estrangeira existente no banco
     @JsonBackReference // Evita o loop com DiaTreino
     private DiaTreino diaTreino;
+
  
 
     @Column(name = "TREINO", length = 120)
@@ -40,6 +41,25 @@ public class Exercicio {
     @Column(name = "OBSERVACOES", length = 255)
     private String observacoes;
 
+    public Exercicio() {}
+    
+    public Exercicio(Long id, DiaTreino diaTreinoId, String treino, Integer series, String repeticoes, String descanso, String observacoes) {
+
+        this.id = id;
+
+        this.diaTreino = diaTreinoId;
+
+        this.treino = treino;
+
+        this.series = series;
+
+        this.repeticoes = repeticoes;
+
+        this.descanso = descanso;
+
+        this.observacoes = observacoes;
+
+    }
    
 
     // Getters e Setters
@@ -47,7 +67,6 @@ public class Exercicio {
     public Long getId() {
 
         return id;
-
     }
 
 
@@ -58,11 +77,12 @@ public class Exercicio {
 
     }
 
+    public DiaTreino getDiaTreino() { return diaTreino; }
+    public void setDiaTreino(DiaTreino diaTreino) { 
+        this.diaTreino = diaTreino; 
+    }
 
-
-    // public DiaTreino getDiaTreino() { return diaTreino; }
-    // public void setDiaTreino(DiaTreino diaTreino) { this.diaTreino = diaTreino; }
-
+   
     public String getTreino() { return treino; }
     public void setTreino(String treino) { this.treino = treino; }
 
@@ -78,16 +98,5 @@ public class Exercicio {
     public String getObservacoes() { return observacoes; }
     public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
 
-    public DiaTreino getDiaTreino() {
-
-        return diaTreino;
-
-    }
-
-
-    public void setDiaTreino(DiaTreino diaTreino) {
-
-        this.diaTreino = diaTreino;
-
-    }
+  
 }
