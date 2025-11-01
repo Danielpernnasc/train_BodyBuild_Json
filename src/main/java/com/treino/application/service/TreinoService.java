@@ -1,9 +1,11 @@
 package com.treino.application.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import com.treino.DTO.DiaTreinoDTO;
-import com.treino.DTO.ExercicioDTO;
+
 import com.treino.DTO.TreinoCreateDTO;
 import com.treino.domain.model.DiaTreino;
 import com.treino.domain.model.Exercicio;
@@ -15,45 +17,101 @@ import jakarta.transaction.Transactional;
 @Service
 public class TreinoService {
 
-  private final TreinoRepository repo;
+    private final TreinoRepository treinoRepository;
 
-  public TreinoService(TreinoRepository repo){
-    this.repo = repo;
-  }
+    public TreinoService(TreinoRepository treinoRepository) {
+        this.treinoRepository = treinoRepository;
+    }
+
+    /**
+     * Cria um treino completo (com dias e exercícios).
+     */
+    @Transactional
+    public Treino criarTreinoComDiasEExercicios(TreinoCreateDTO dto) {
+        Treino treino = new Treino();
+        treino.setNomeTreino(dto.getNomeTreino());
+
+        if (dto.dias() != null) {
+            dto.dias().forEach(diaDTO -> {
+                DiaTreino dia = new DiaTreino();
+                dia.setDiaSemana(diaDTO.getDiaSemana());
+                dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
+                dia.setEnfase(diaDTO.getEnfase());
+                dia.setTreino(treino); // <- importante: define a FK
+
+                if (diaDTO.getExercicios() != null) {
+                    diaDTO.getExercicios().forEach(exDTO -> {
+                        Exercicio ex = new Exercicio();
+                        ex.setSeries(exDTO.getSeries());
+                        ex.setRepeticoes(exDTO.getRepeticoes());
+                        ex.setDescanso(exDTO.getDescanso());
+                        ex.setObservacoes(exDTO.getObservacoes());
+                        ex.setDiaTreino(dia); // <- importante: define a FK
+                        dia.addExercicio(ex);
+                    });
+                }
+
+                treino.addDia(dia);
+            });
+        }
+
+        return treinoRepository.save(treino);
+    }
+
+    /**
+     * Lista todos os treinos cadastrados.
+     */
+    public List<Treino> listar() {
+        return treinoRepository.findAll();
+    }
+
+    /**
+     * Busca um treino pelo ID.
+     */
+    public Optional<Treino> buscar(Long id) {
+        return treinoRepository.findById(id);
+    }
 
 
-  @Transactional
-  public Treino criarTreinoComDiasEExercicios(TreinoCreateDTO dto) {
-      Treino treino = new Treino();
-      treino.setNomeTreino(dto.getNomeTreino());
+    // TreinoService.java
+    @Transactional
+    public Treino atualizar(Long id, TreinoCreateDTO dto) {
+        Treino existente = treinoRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Treino " + id + " não encontrado"));
+
+    // atualiza campos do treino
+    existente.setNomeTreino(dto.getNomeTreino());
+
+    // zera os dias/exercícios atuais (orphanRemoval remove no banco)
+    existente.getDiasTreino().clear();
+
+    // recria a estrutura a partir do DTO
+    if (dto.dias() != null) {
+        dto.dias().forEach(diaDTO -> {
+            DiaTreino dia = new DiaTreino();
+            dia.setDiaSemana(diaDTO.getDiaSemana());
+            dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
+            dia.setEnfase(diaDTO.getEnfase());
+            dia.setTreino(existente);
+
+            if (diaDTO.getExercicios() != null) {
+               
+            }
+
+            existente.addDia(dia);
+        });
+    }
+
+    // como 'existente' está gerenciado, só retornar: o flush ocorre no commit
+    return existente;
+}
+
+
   
-      if (dto.dias() != null) {
-          for (DiaTreinoDTO d : dto.dias()) {
-              DiaTreino dia = new DiaTreino();
-              dia.setDiaSemana(d.getDiaSemana());
-              dia.setGrupoMuscular(d.getGrupoMuscular()); // novo campo
-              dia.setEnfase(d.getEnfase());               // novo campo
+    @Transactional
+    public void deletar(Long id) {
+        treinoRepository.deleteById(id);
+    }
 
-  
-              if (d.getExercicios() != null) {
-                  for (ExercicioDTO ex : d.getExercicios()) {
-                      Exercicio e = new Exercicio();
-                      e.setTreino(ex.getNomeTreino());
-                      e.setSeries(ex.getSeries());
-                      e.setRepeticoes(ex.getRepeticoes());
-                      e.setDescanso(ex.getDescanso());
-                      e.setObservacoes(ex.getObservacoes());
-                      dia.addExercicio(e);
-                  }
-              }
-              treino.addDia(dia);
-          }
-      }
-  
-      return repo.save(treino);
-  }
-  
-
-  public java.util.List<Treino> listar() { return repo.findAll(); }
-  public java.util.Optional<Treino> buscar(Long id) { return repo.findById(id); }
+    
 }

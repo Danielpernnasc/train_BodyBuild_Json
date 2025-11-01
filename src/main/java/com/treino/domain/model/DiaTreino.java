@@ -3,6 +3,8 @@ package com.treino.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "DIA_TREINO")
 public class DiaTreino {
@@ -24,22 +27,29 @@ public class DiaTreino {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "TREINO_ID") // existe no seu schema
+    @JoinColumn(name = "TREINO_ID")
+    @JsonBackReference //Evita o loop com Treino
     private Treino treino;
 
     @Column(name = "DIA_SEMANA", nullable = false, length = 20)
-    private String diaSemana; // ex: "SEGUNDA", "TERÇA", etc. (pode virar enum depois)
+    private String diaSemana;
 
     @Column(name = "GRUPO_MUSCULAR", length = 60)
-    private String grupoMuscular; // ex: “Peito/Tríceps”
+    private String grupoMuscular;
 
     @Column(name = "ENFASE", length = 60)
-    private String enfase; // ex: “Força”, “Volume”, “Resistência”
+    private String enfase;
 
     @OneToMany(mappedBy = "diaTreino", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<com.treino.domain.model.Exercicio> exercicios = new ArrayList<>();
+    @JsonBackReference //Evita o loop com Exercicio
+    private List<Exercicio> exercicios = new ArrayList<>();
+    
+    public void addExercicio(Exercicio exercicio) {
+        this.exercicios.add(exercicio);
+        exercicio.setDiaTreino(this); 
 
-    // getters/setters
+    }
+    
     public Long getId() { return id; }
     public Treino getTreino() { return treino; }
     public void setTreino(Treino treino) { this.treino = treino; }
@@ -53,11 +63,8 @@ public class DiaTreino {
     public String getEnfase() { return enfase; }
     public void setEnfase(String enfase) { this.enfase = enfase; }
 
-    public List<com.treino.domain.model.Exercicio> getExercicios() { return exercicios; }
-    public void setExercicios(List<com.treino.domain.model.Exercicio> exercicios) { this.exercicios = exercicios; }
+    public List<Exercicio> getExercicios() { return exercicios; }
+    public void setExercicios(List<Exercicio> exercicios) { this.exercicios = exercicios; }
 
-    public void addExercicio(com.treino.domain.model.Exercicio e) {
-        e.setDiaTreino(this);
-        exercicios.add(e);
-    }
+ 
 }
