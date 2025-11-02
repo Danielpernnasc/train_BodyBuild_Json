@@ -34,7 +34,7 @@ public class TreinoService {
         if (treinando.getDiasTreino() != null) {
             treinando.getDiasTreino().forEach(diaDTO -> {
                 DiaTreino dia = new DiaTreino();
-                dia.setDiaSemana(diaDTO.getDiaSemana());
+                //dia.setDiaSemana(diaDTO.getDiaSemana());
                 dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
                 dia.setEnfase(diaDTO.getEnfase());
                 dia.setTreino(treino); // <- importante: define a FK
@@ -51,7 +51,7 @@ public class TreinoService {
                     });
                 }
 
-                treino.addDia(dia);
+                //treino.addDia(dia);
             });
         }
 
@@ -89,7 +89,7 @@ public class TreinoService {
     if (dto.getDiasTreino() != null) {
         dto.getDiasTreino().forEach(diaDTO -> {
             DiaTreino dia = new DiaTreino();
-            dia.setDiaSemana(diaDTO.getDiaSemana());
+            //dia.setDiaSemana(diaDTO.getDiaSemana());
             dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
             dia.setEnfase(diaDTO.getEnfase());
             dia.setTreino(existente);
@@ -98,7 +98,7 @@ public class TreinoService {
                
             }
 
-            existente.addDia(dia);
+            //existente.addDia(dia);
         });
     }
 

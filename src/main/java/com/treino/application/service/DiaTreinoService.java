@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.treino.domain.model.DiaTreino;
+import com.treino.domain.model.Exercicio;
 import com.treino.domain.repository.DiaTreinoRepository;
+import com.treino.domain.repository.ExercicioRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -15,10 +17,14 @@ import jakarta.transaction.Transactional;
 public class DiaTreinoService {
 
     private final DiaTreinoRepository diaTreinoRepository;
+    private final ExercicioRepository exercicioRepository;
 
-    public DiaTreinoService(DiaTreinoRepository diaTreinoRepository) {
+    public DiaTreinoService(DiaTreinoRepository diaTreinoRepository, ExercicioRepository exercicioRepository) {
         this.diaTreinoRepository = diaTreinoRepository;
+        this.exercicioRepository = exercicioRepository;
     }
+
+    // Removed incomplete method declaration
 
     @Transactional
     public DiaTreino criarDiaTreino(DiaTreino diaTreino) {
@@ -34,8 +40,16 @@ public class DiaTreinoService {
         return diaTreinoRepository.findAll();
     }
 
+    public List<Exercicio> buscarExercicioSemanal(){
+        return exercicioRepository.findAll();
+    }
+
     public Optional<DiaTreino> buscarDiaTreinoPorId(Long id) {
         return diaTreinoRepository.findById(id);
+    }
+
+    public Optional<Exercicio> buscarDiaExercicioPorId(Long id) {
+        return exercicioRepository.findById(id);
     }
 
 

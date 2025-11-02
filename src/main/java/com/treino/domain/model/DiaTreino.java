@@ -42,14 +42,24 @@ public class DiaTreino {
 
     @OneToMany(mappedBy = "diaTreino", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference //Evita o loop com Exercicio
-    private List<Exercicio> exercicios = new ArrayList<>();
+    private List<Exercicio> exercicio = new ArrayList<>();
     
     public void addExercicio(Exercicio exercicio) {
-        this.exercicios.add(exercicio);
+        this.exercicio.add(exercicio);
         exercicio.setDiaTreino(this); 
 
     }
     
+
+    public void getIdTreino(){
+        this.treino.getId();
+    }
+
+    public void getNomeTreino(){
+        this.treino.getNomeTreino();
+    }
+
+
     public Long getId() { return id; }
     public Treino getTreino() { return treino; }
     public void setTreino(Treino treino) { this.treino = treino; }
@@ -63,8 +73,8 @@ public class DiaTreino {
     public String getEnfase() { return enfase; }
     public void setEnfase(String enfase) { this.enfase = enfase; }
 
-    public List<Exercicio> getExercicios() { return exercicios; }
-    public void setExercicios(List<Exercicio> exercicios) { this.exercicios = exercicios; }
+    public List<Exercicio> getExercicios() { return exercicio; }
+    public void setExercicios(List<Exercicio> exercicio) { this.exercicio = exercicio; }
 
  
 }

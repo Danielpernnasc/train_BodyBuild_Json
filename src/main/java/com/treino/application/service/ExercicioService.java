@@ -23,6 +23,8 @@ public class ExercicioService {
     }
 
 
+    
+
     public List<Exercicio> getAllExercicios() {
         return exercicioRepository.findAll();
     }

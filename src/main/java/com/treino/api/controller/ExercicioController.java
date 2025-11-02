@@ -52,7 +52,7 @@ public class ExercicioController {
     )
     @GetMapping
     public ResponseEntity<List<Exercicio>> listarTodos() {
-        List<Exercicio> exercicios = repo.findAll().stream()
+        List<Exercicio> exercicio = repo.findAll().stream()
             .map(e -> new Exercicio(
                 e.getId(),
                 e.getDiaTreino(),
@@ -63,7 +63,7 @@ public class ExercicioController {
                 e.getObservacoes()
             ))
             .toList();
-        return ResponseEntity.ok(exercicios);
+        return ResponseEntity.ok(exercicio);
     }
 
     // ===================== BUSCAR POR ID =====================

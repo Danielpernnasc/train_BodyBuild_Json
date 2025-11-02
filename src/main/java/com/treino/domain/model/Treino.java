@@ -44,10 +44,10 @@ public class Treino {
     private List<DiaTreino> diasTreino = new ArrayList<>();
 
 
-    public void addDia(DiaTreino d) {
-        d.setTreino(this);
-        diasTreino.add(d);
-    }
+    // public void addDia(DiaTreino d) {
+    //     d.setTreino(this);
+    //     diasTreino.add(d);
+    // }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
