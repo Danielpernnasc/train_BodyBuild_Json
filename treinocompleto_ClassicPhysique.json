@@ -1,0 +1,329 @@
+{
+    "nomeTreino": "Classic Elite Pro",
+    "categoria": "Classic Physique",
+    "descricao": "Divisao semanal avan‡ada estilo Classic Physique",
+    "diasTreino": [
+        {
+            "diaSemana": "Segunda",
+            "grupoMuscular": "Peito e Ombros",
+            "enfase": "Volume e densidade peitoral",
+            "exercicios": [
+                {
+                    "treino": "Supino reto barra",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "90s",
+                    "observacoes": "1a leve, ultimas 2 ate falha"
+                },
+                {
+                    "treino": "Supino Inclinado halteres",
+                    "series": 4,
+                    "repeticoes": "10-12",
+                    "descanso": "75s",
+                    "observacoes": "Concentracao maxima no pico"
+                },
+                {
+                    "treino": "Crucifixo inclinado maquina",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "2s contracao / 3s descida"
+                },
+                {
+                    "treino": "Crossover alto para baixo",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "75s",
+                    "observacoes": "Pump final"
+                },
+                {
+                    "treino": "Desenvolvimento militar barra",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "60s",
+                    "observacoes": "Tecnica controlada"
+                },
+                {
+                    "treino": "Elevacao frontal halteres",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "Superset com lateral"
+                },
+                {
+                    "treino": "Elevacao lateral halteres",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "Rest-pause na ultima serie"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Terca",
+            "grupoMuscular": "Costas e Abdomen",
+            "enfase": "Largura e espessura dorsal",
+            "exercicios": [
+                {
+                    "treino": "Barra fixa (pegada aberta)",
+                    "series": 4,
+                    "repeticoes": "8-12",
+                    "descanso": "90s",
+                    "observacoes": "Aquecimento + falha controlada"
+                },
+                {
+                    "treino": "Puxada frente pegada media",
+                    "series": 4,
+                    "repeticoes": "10-12",
+                    "descanso": "90s",
+                    "observacoes": "Contracao de 1s no final"
+                },
+                {
+                    "treino": "Remada curvada barra",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "75s",
+                    "observacoes": "Estilo Cbum, pesada e tecnica"
+                },
+                {
+                    "treino": "Remada unilateral halter",
+                    "series": 3,
+                    "repeticoes": "10-12",
+                    "descanso": "60s",
+                    "observacoes": "Alongar ao maximo"
+                },
+                {
+                    "treino": "Abdomen na polia alta",
+                    "series": 4,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Contrair forte"
+                },
+                {
+                    "treino": "Prancha + elevacao de pernas",
+                    "series": 3,
+                    "repeticoes": "30s + 15 reps",
+                    "descanso": "45s",
+                    "observacoes": "Estilo Classic"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Quarta",
+            "grupoMuscular": "Quadriceps",
+            "enfase": "Volume e detalhamento",
+            "exercicios": [
+                {
+                    "treino": "Extensora (pre-exaustao)",
+                    "series": 4,
+                    "repeticoes": "20/15/12/10",
+                    "descanso": "60s",
+                    "observacoes": "1a leve, ultimas 2 ate falha"
+                },
+                {
+                    "treino": "Agachamento livre",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "90s",
+                    "observacoes": "Profundidade total"
+                },
+                {
+                    "treino": "Leg press 45",
+                    "series": 4,
+                    "repeticoes": "10-12",
+                    "descanso": "75s",
+                    "observacoes": "Pes juntos/foco no vasto lateral"
+                },
+                {
+                    "treino": "Hack squat",
+                    "series": 3,
+                    "repeticoes": "10-12",
+                    "descanso": "60s",
+                    "observacoes": "3s descida"
+                },
+                {
+                    "treino": "Panturrilha com halteres",
+                    "series": 3,
+                    "repeticoes": "12 cada perna",
+                    "descanso": "45s",
+                    "observacoes": "Queima total"
+                },
+                {
+                    "treino": "Panturrilha em pe",
+                    "series": 4,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Pausa de 1s no topo"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Quinta",
+            "grupoMuscular": "Ombros e Triceps",
+            "enfase": "Densidade e definicao",
+            "exercicios": [
+                {
+                    "treino": "Desenvolvimento halteres",
+                    "series": 4,
+                    "repeticoes": "8-12",
+                    "descanso": "60s",
+                    "observacoes": "Drop na ultima"
+                },
+                {
+                    "treino": "Elevacao lateral polia",
+                    "series": 4,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "Controle total"
+                },
+                {
+                    "treino": "Elevacao posterior banco 45",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "Estilo Caike (detalhe deltoide)"
+                },
+                {
+                    "treino": "Encolhimento barra",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Trapezio"
+                },
+                {
+                    "treino": "Triceps corda",
+                    "series": 4,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "Aquecimento"
+                },
+                {
+                    "treino": "Triceps frances",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "75s",
+                    "observacoes": "Pesado"
+                },
+                {
+                    "treino": "Mergulho maquina ou peso corporal",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "Falha tecnica"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Sexta",
+            "grupoMuscular": "Costas e Biceps",
+            "enfase": "Forca e espessura",
+            "exercicios": [
+                {
+                    "treino": "Levantamento terra",
+                    "series": 4,
+                    "repeticoes": "6-8",
+                    "descanso": "120s",
+                    "observacoes": "Densidade e forca"
+                },
+                {
+                    "treino": "Puxada neutra",
+                    "series": 4,
+                    "repeticoes": "10-12",
+                    "descanso": "90s",
+                    "observacoes": "Contracao total"
+                },
+                {
+                    "treino": "Remada baixa cabo",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria"
+                },
+                {
+                    "treino": "Pulldown unilateral",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "Movimento Controlado"
+                },
+                {
+                    "treino": "Rosca alternadas halteres",
+                    "series": 3,
+                    "repeticoes": "10-12",
+                    "descanso": "75s",
+                    "observacoes": "Superset Martelo"
+                },
+                {
+                    "treino": "Rosca martelo cabo",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "Pump final"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Sabado",
+            "grupoMuscular": "Posterior, Gluteos e Panturrilha",
+            "enfase": "Densidade posterior",
+            "exercicios": [
+                {
+                    "treino": "Cadeira Flexora",
+                    "series": 4,
+                    "repeticoes": "15/12/10/8",
+                    "descanso": "60s",
+                    "observacoes": "Rest-pause"
+                },
+                {
+                    "treino": "Stiff halteres",
+                    "series": 4,
+                    "repeticoes": "8-10",
+                    "descanso": "45s",
+                    "observacoes": "3s descida"
+                },
+                {
+                    "treino": "Levantamento terra romeno",
+                    "series": 3,
+                    "repeticoes": "8-10",
+                    "descanso": "45s",
+                    "observacoes": "Foco gluteo / posterior"
+                },
+                {
+                    "treino": "Glute bridge",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "Contracao maxima"
+                },
+                {
+                    "treino": "Adutor / abdutor maquina",
+                    "series": 3,
+                    "repeticoes": "12-15",
+                    "descanso": "60s",
+                    "observacoes": "SuperSet"
+                },
+                {
+                    "treino": "Panturrilha sentado",
+                    "series": 4,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "2s no pico"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Domingo",
+            "grupoMuscular": "Descanso ativo",
+            "enfase": "Recuperacao",
+            "exercicios": [
+                {
+                    "treino": "Descanso ativo",
+                    "series": 0,
+                    "repeticoes": "-",
+                    "descanso": "-",
+                    "observacoes": "Caminhada leve, alongamento ou yoga"
+                }
+            ]
+        }
+    ]
+}

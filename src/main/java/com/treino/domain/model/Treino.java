@@ -3,11 +3,14 @@ package com.treino.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,6 +27,7 @@ public class Treino {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_treino")
     @SequenceGenerator(name = "seq_treino", sequenceName = "SEQ_TREINO", allocationSize = 1)
     @Column(name = "ID")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)  // ✅ Adicione esta linha
     private Long id;
     
 
@@ -39,15 +43,26 @@ public class Treino {
     @Column(name = "CREATED_AT")
     private java.time.LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "treino", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "treino", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<DiaTreino> diasTreino = new ArrayList<>();
 
+    public Treino() {
+    }
 
-    // public void addDia(DiaTreino d) {
-    //     d.setTreino(this);
-    //     diasTreino.add(d);
-    // }
+    public void addDia(DiaTreino d) {
+        d.setTreino(this);
+        diasTreino.add(d);
+    }
+
+    @jakarta.persistence.PrePersist
+    public void prePersist() {
+        // Se createdAt ainda não foi definido manualmente,
+        // define a data/hora atual no momento do INSERT.
+        if (this.createdAt == null) {
+            this.createdAt = java.time.LocalDateTime.now();
+        }
+    }
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

@@ -1,0 +1,266 @@
+{
+    "nomeTreino": "Natural Strength Plan",
+    "categoria": "Natural Physique",
+    "descricao": "Treino de densidade e volume natural sem ergogenicos",
+    "diasTreino": [
+        {
+            "diaSemana": "Segunda",
+            "grupoMuscular": "Costas + Gluteo Medio + Abdomen",
+            "enfase": "Forca e estabilidade posterior",
+            "exercicios": [
+                {
+                    "treino": "Barra fixa ou puxada alta",
+                    "series": 4,
+                    "repeticoes": "10",
+                    "descanso": "90s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Remada unilateral",
+                    "series": 4,
+                    "repeticoes": "10",
+                    "descanso": "75s",
+                    "observacoes": "Controle total do movimento"
+                },
+                {
+                    "treino": "Pulldown pegada neutra",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria e drop ate a falha"
+                },
+                {
+                    "treino": "Coice no cabo ou maquina (gluteo medio)",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Abdutora lateral",
+                    "series": 3,
+                    "repeticoes": "20",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Abdominal infra + prancha",
+                    "series": 3,
+                    "repeticoes": "20 + 30s prancha",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Terca",
+            "grupoMuscular": "Peito + Biceps + Abdomen",
+            "enfase": "Hipertrofia",
+            "exercicios": [
+                {
+                    "treino": "Supino inclinado com halter",
+                    "series": 4,
+                    "repeticoes": "10",
+                    "descanso": "90s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Crossover com contracao no final",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Rosca alternada",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria e drop ate a falha"
+                },
+                {
+                    "treino": "Rosca Martelo",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Abdominal obliquo",
+                    "series": 3,
+                    "repeticoes": "20 cada lado",
+                    "descanso": "30s",
+                    "observacoes": "Foco na contracao maxima"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Quarta",
+            "grupoMuscular": "Posterior de Coxa + Quadriceps + Panturrilha",
+            "enfase": "Forca e hipertrofia",
+            "exercicios": [
+                {
+                    "treino": "Stiff com barra ou halteres",
+                    "series": 4,
+                    "repeticoes": "10",
+                    "descanso": "90s",
+                    "observacoes": "Descida controlada"
+                },
+                {
+                    "treino": "Mesa flexora",
+                    "series": 4,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria e drop ate a falha"
+                },
+                {
+                    "treino": "Passa longa para tras",
+                    "series": 3,
+                    "repeticoes": "10 por perna",
+                    "descanso": "60s",
+                    "observacoes": "Concentracao na descida"
+                },
+                {
+                    "treino": "Pranca com elevacao alternada de perna",
+                    "series": 3,
+                    "repeticoes": "30",
+                    "descanso": "60s",
+                    "observacoes": "Velocidade normal"
+                },
+                {
+                    "treino": "Elevacao de pernas na barra",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Controle na velocidade"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Quinta",
+            "grupoMuscular": "Descanso ativo",
+            "enfase": "Cardio leve + mobilidade + core",
+            "exercicios": [
+                {
+                    "treino": "Caminhada rapida ou corrida leve",
+                    "series": 1,
+                    "repeticoes": "20-30 minutos",
+                    "descanso": "N/A",
+                    "observacoes": "Manter ritmo confortavel"
+                },
+                {
+                    "treino": "Alongamentos e mobilidade para quadril e lombar",
+                    "series": 1,
+                    "repeticoes": "15 minutos",
+                    "descanso": "N/A",
+                    "observacoes": "Focar em amplitude de movimento"
+                },
+                {
+                    "treino": "Prancha lateral + prancha tradicional",
+                    "series": 3,
+                    "repeticoes": "30s cada",
+                    "descanso": "N/A",
+                    "observacoes": "Manter postura correta"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Sexta",
+            "grupoMuscular": "Ombros + Triceps + Abdomen",
+            "enfase": "Hipertrofia",
+            "exercicios": [
+                {
+                    "treino": "Elevacao lateral 21",
+                    "series": 3,
+                    "repeticoes": "21",
+                    "descanso": "60s",
+                    "observacoes": "7 curtas + 7 meia + 7 completas"
+                },
+                {
+                    "treino": "Desenvolvimento Arnold",
+                    "series": 3,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Triceps corda",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria e drop ate a falha"
+                },
+                {
+                    "treino": "Triceps coice",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                },
+                {
+                    "treino": "Abdominal com carga no cross",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "60s",
+                    "observacoes": "Foco na contracao maxima"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Sabado",
+            "grupoMuscular": "Quadriceps + Gluteos",
+            "enfase": "Forca e hipertrofia",
+            "exercicios": [
+                {
+                    "treino": "Agachamento frontal ou livre",
+                    "series": 4,
+                    "repeticoes": "10",
+                    "descanso": "90s",
+                    "observacoes": "Descida controlada"
+                },
+                {
+                    "treino": "Leg press 45",
+                    "series": 4,
+                    "repeticoes": "12",
+                    "descanso": "60s",
+                    "observacoes": "2s isometria e drop ate a falha"
+                },
+                {
+                    "treino": "Avanco com halteres",
+                    "series": 3,
+                    "repeticoes": "10 por perna",
+                    "descanso": "60s",
+                    "observacoes": "Concentracao na descida"
+                },
+                {
+                    "treino": "Cadeira extensora",
+                    "series": 3,
+                    "repeticoes": "15",
+                    "descanso": "30s",
+                    "observacoes": "Drop set na ultima serie"
+                },
+                {
+                    "treino": "Gluteo no cabo ou maquina",
+                    "series": 3,
+                    "repeticoes": "20 por perna",
+                    "descanso": "30s",
+                    "observacoes": "Foco na contracao maxima"
+                }
+            ]
+        },
+        {
+            "diaSemana": "Domingo",
+            "grupoMuscular": "Descanso total",
+            "enfase": "Recuperacao muscular",
+            "exercicios": [
+                {
+                    "treino": "Descanso total",
+                    "series": 0,
+                    "repeticoes": "N/A",
+                    "descanso": "N/A",
+                    "observacoes": "Recuperacao muscular"
+                }
+            ]
+        }
+    ]
+}

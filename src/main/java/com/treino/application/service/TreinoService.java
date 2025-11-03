@@ -26,37 +26,42 @@ public class TreinoService {
     /**
      * Cria um treino completo (com dias e exercícios).
      */
-    @Transactional
-    public Treino criarTreinoComDiasEExercicios(Treino treinando) {
-        Treino treino = new Treino();
-        treino.setNomeTreino(treinando.getNomeTreino());
+@Transactional
+public Treino criarTreinoComDiasEExercicios(Treino body) {
+  Treino treino = new Treino();
+  treino.setNomeTreino(body.getNomeTreino());
+  treino.setCategoria(body.getCategoria());
+  treino.setDescricao(body.getDescricao());
+  treino.setCreatedAt(body.getCreatedAt());
 
-        if (treinando.getDiasTreino() != null) {
-            treinando.getDiasTreino().forEach(diaDTO -> {
-                DiaTreino dia = new DiaTreino();
-                //dia.setDiaSemana(diaDTO.getDiaSemana());
-                dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
-                dia.setEnfase(diaDTO.getEnfase());
-                dia.setTreino(treino); // <- importante: define a FK
+  if (body.getDiasTreino() != null) {
+    body.getDiasTreino().forEach(diaIn -> {
+      DiaTreino dia = new DiaTreino();
+      dia.setDiaSemana(diaIn.getDiaSemana());           // <- ESSENCIAL
+      dia.setGrupoMuscular(diaIn.getGrupoMuscular());
+      dia.setEnfase(diaIn.getEnfase());
 
-                if (diaDTO.getExercicios() != null) {
-                    diaDTO.getExercicios().forEach(exDTO -> {
-                        Exercicio exercicio = new Exercicio();
-                        exercicio.setSeries(exDTO.getSeries());
-                        exercicio.setRepeticoes(exDTO.getRepeticoes());
-                        exercicio.setDescanso(exDTO.getDescanso());
-                        exercicio.setObservacoes(exDTO.getObservacoes());
-                        exercicio.setDiaTreino(dia); // <- importante: define a FK
-                        dia.addExercicio(exercicio);
-                    });
-                }
+      treino.addDia(dia); // addDia já faz dia.setTreino(this)
 
-                //treino.addDia(dia);
-            });
-        }
+      if (diaIn.getExercicios() != null) {
+        diaIn.getExercicios().forEach(exIn -> {
+          Exercicio ex = new Exercicio();
+          ex.setTreino(exIn.getTreino());               // nome/texto do exercício
+          ex.setSeries(exIn.getSeries());
+          ex.setRepeticoes(exIn.getRepeticoes());
+          ex.setDescanso(exIn.getDescanso());
+          ex.setObservacoes(exIn.getObservacoes());
+          ex.setDiaTreino(dia);                         // <- FK DIA_TREINO_ID
+          dia.getExercicios().add(ex);
+        });
+      }
+    });
+  }
 
-        return treinoRepository.save(treino);
-    }
+  return treinoRepository.save(treino);
+}
+
+    
 
     /**
      * Lista todos os treinos cadastrados.
@@ -75,37 +80,45 @@ public class TreinoService {
 
     // TreinoService.java
     @Transactional
-    public Treino atualizar(Long id, Treino dto) {
-        Treino existente = treinoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Treino " + id + " não encontrado"));
+public Treino atualizar(Long id, Treino dto) {
+    Treino existente = treinoRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Treino " + id + " não encontrado"));
 
-    // atualiza campos do treino
+    // Atualiza campos do treino
     existente.setNomeTreino(dto.getNomeTreino());
+    existente.setCategoria(dto.getCategoria());
+    existente.setDescricao(dto.getDescricao());
 
-    // zera os dias/exercícios atuais (orphanRemoval remove no banco)
+    // Zera os dias/exercícios atuais (orphanRemoval remove no banco)
     existente.getDiasTreino().clear();
 
-    // recria a estrutura a partir do DTO
+    // Recria a estrutura a partir do DTO
     if (dto.getDiasTreino() != null) {
         dto.getDiasTreino().forEach(diaDTO -> {
             DiaTreino dia = new DiaTreino();
-            //dia.setDiaSemana(diaDTO.getDiaSemana());
+            dia.setDiaSemana(diaDTO.getDiaSemana());
             dia.setGrupoMuscular(diaDTO.getGrupoMuscular());
             dia.setEnfase(diaDTO.getEnfase());
-            dia.setTreino(existente);
+
+            existente.addDia(dia);  // Configura dia.setTreino(existente)
 
             if (diaDTO.getExercicios() != null) {
-               
-            }
+                diaDTO.getExercicios().forEach(exDTO -> {
+                    Exercicio ex = new Exercicio();
+                    ex.setTreino(exDTO.getTreino());
+                    ex.setSeries(exDTO.getSeries());
+                    ex.setRepeticoes(exDTO.getRepeticoes());
+                    ex.setDescanso(exDTO.getDescanso());
+                    ex.setObservacoes(exDTO.getObservacoes());
 
-            //existente.addDia(dia);
+                    dia.addExercicio(ex);  // Configura ex.setDiaTreino(dia)
+                });
+            }
         });
     }
 
-    // como 'existente' está gerenciado, só retornar: o flush ocorre no commit
-    return existente;
+    return existente;  // JPA flush automático no commit
 }
-
 
   
     @Transactional

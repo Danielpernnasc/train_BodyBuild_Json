@@ -7,32 +7,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity 
 @Table(name = "EXERCICIO")
 public class Exercicio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_exercicio")
+    @SequenceGenerator(name = "seq_exercicio", sequenceName = "SEQ_EXERCICIO", allocationSize = 1)
     @Column(name = "ID")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "DIA_TREINO_ID") // chave estrangeira existente no banco
-    @JsonBackReference // Evita o loop com DiaTreino
+    @JoinColumn(name = "DIA_TREINO_ID")
+    @JsonIgnore
     private DiaTreino diaTreino;
-
- 
-
     @Column(name = "TREINO", length = 120)
     private String treino;
 
     @Column(name = "SERIES")
     private Integer series;
 
-    @Column(name = "REPETICOES", length = 20)
+    @Column(name = "REPETICOES", length = 50)
     private String repeticoes;
 
     @Column(name = "DESCANSO", length = 10)
@@ -42,30 +44,24 @@ public class Exercicio {
     private String observacoes;
 
     public Exercicio() {}
-    
+
     public Exercicio(Long id, DiaTreino diaTreinoId, String treino, Integer series, String repeticoes, String descanso, String observacoes) {
-
         this.id = id;
-
         this.diaTreino = diaTreinoId;
-
         this.treino = treino;
-
         this.series = series;
-
         this.repeticoes = repeticoes;
-
         this.descanso = descanso;
-
         this.observacoes = observacoes;
-
     }
    
 
     // Getters e Setters
-    public Long getDiaTreinoId() { return id; }
+    public Long getDiaTreinoId() { 
+        return diaTreino != null ? diaTreino.getId() : null;  // ✅ CORRETO
+    }
+    
     public Long getId() {
-
         return id;
     }
 
